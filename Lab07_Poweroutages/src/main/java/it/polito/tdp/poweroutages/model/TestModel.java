@@ -10,9 +10,9 @@ public class TestModel {
 		Model model = new Model();
 		System.out.println(model.getNercList());
 		
-		Nerc n = new Nerc(13,"MAAC");
+		Nerc n = new Nerc(3,"MAAC");
 		
-		List<Blackout> soluzione = new ArrayList(model.getAnalysis(n, 2, 100));
+		List<Blackout> soluzione = new ArrayList(model.getAnalysis(n, 4, 200));
 		
 		for(Blackout b: soluzione) {
 			System.out.println(b);

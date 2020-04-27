@@ -73,17 +73,10 @@ public class Model {
 			return;
 		}
 		
-		//if(livello > 0) {
-		/*if(bestSomma == 0) {
+		if(getSomma(parziale)>bestSomma) {
+			soluzione = new ArrayList<>(parziale);
 			bestSomma = getSomma(parziale);
-			soluzione = new ArrayList(parziale);
-		}else {*/
-			if(getSomma(parziale)>bestSomma) {
-				soluzione = new ArrayList(parziale);
-				bestSomma = getSomma(parziale);
-			}
-		//}
-		//}
+		}
 		
 		if(livello == blackoutList.size()) {
 			return;
@@ -126,8 +119,10 @@ public class Model {
 		
 		LocalDateTime tempLmin = null;
 		LocalDateTime tempLmax = null;
-		int dataInizio = 0;
-		int dataFine = 0;
+		//int dataInizio = 0;
+		//int dataFine = 0;
+		LocalDate dataInizio;
+		LocalDate dataFine;
 		int n = 0;
 		
 		for(Blackout b: parziale) {
@@ -152,18 +147,19 @@ public class Model {
 			
 		}
 		
-	/*	dataInizio = tempLmin.toLocalDate();
-	    dataFine = tempLmax.toLocalDate();
-	    System.out.println(dataInizio+"   "+dataFine);
-		
-		int n = Period.between(dataInizio, dataFine).getYears();*/
-		
 		if(tempLmin!=null && tempLmax!=null) {
+			dataInizio = tempLmin.toLocalDate();
+			dataFine = tempLmax.toLocalDate();
+		
+			n = Period.between(dataInizio, dataFine).getYears();
+			}
+		
+	/*	if(tempLmin!=null && tempLmax!=null) {
 			dataInizio = tempLmin.getYear();
 		    dataFine  = tempLmax.getYear();
 		
 		    n = dataFine-dataInizio;
-		}
+		}*/
 		
 		return n;
 		

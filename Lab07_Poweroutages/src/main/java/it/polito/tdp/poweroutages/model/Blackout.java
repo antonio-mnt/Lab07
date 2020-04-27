@@ -9,7 +9,7 @@ public class Blackout {
 	private int nercId;
 	private LocalDateTime dataInizio;
 	private LocalDateTime dataFine;
-	private int oreDisservizio;
+	private long oreDisservizio;
 	private int nPersone;
 	
 	
@@ -18,7 +18,7 @@ public class Blackout {
 		this.nercId = nercId;
 		this.dataInizio = dataInizio;
 		this.dataFine = dataFine;
-		this.oreDisservizio = Duration.between(dataInizio, dataFine).toHoursPart();
+		this.oreDisservizio = Duration.between(dataInizio, dataFine).getSeconds()/3600;
 		this.nPersone = nPersone;
 		
 	}
@@ -56,7 +56,7 @@ public class Blackout {
 	}
 	
 
-	public int getOreDisservizio() {
+	public long getOreDisservizio() {
 		return oreDisservizio;
 	}
 

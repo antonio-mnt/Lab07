@@ -46,18 +46,14 @@ public class FXMLController {
     	int maxY = 0;
     	int maxH = 0;
     	
-    	if(txtY.getText().equals("")) {
-    		txtResult.setText("Inserire un numero massimo di anni!");
-    		return;
-    	}
-    	
-    	if(txtH.getText().equals("")) {
-    		txtResult.setText("Inserire un numero massimo di ore!");
-    		return;
-    	}
-    	
     	if(nercBox.getValue()==null) {
     		txtResult.setText("Selezionare un NERC!");
+    		return;
+    	}
+    	
+    	
+    	if(txtY.getText().equals("")) {
+    		txtResult.setText("Inserire un numero massimo di anni!");
     		return;
     	}
     	
@@ -65,15 +61,23 @@ public class FXMLController {
     		maxY = Integer.parseInt(txtY.getText());
     	}catch(NumberFormatException ne){
     		txtResult.setText("Puoi inserire solamente caratteri numerici!");
+    		return;
+    	}
+    	
+    	
+    	if(txtH.getText().equals("")) {
+    		txtResult.setText("Inserire un numero massimo di ore!");
+    		return;
     	}
     	
     	try {
     		maxH = Integer.parseInt(txtH.getText());
     	}catch(NumberFormatException ne){
     		txtResult.setText("Puoi inserire solamente caratteri numerici!");
+    		return;
     	}
     	
-    	List<Blackout> soluzione = new ArrayList(model.getAnalysis(nercBox.getValue(), maxY, maxH));
+    	List<Blackout> soluzione = new ArrayList<>(model.getAnalysis(nercBox.getValue(), maxY, maxH));
     	
     	
     	if(soluzione.size()==0) {
